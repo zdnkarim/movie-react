@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/movie-react/static/css/main.e7ae1686.css",
+    "main.js": "/movie-react/static/js/main.e297bb51.js",
+    "static/media/1.mp4": "/movie-react/static/media/1.1415ef773fa8c48720c4.mp4",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/movie-react/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/ElegantIcons.svg": "/movie-react/static/media/ElegantIcons.a3709f859357b50798d9.svg",
+    "static/media/fontawesome-webfont.eot": "/movie-react/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/movie-react/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/movie-react/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/movie-react/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/ElegantIcons.woff": "/movie-react/static/media/ElegantIcons.941bf29b415d3a9b7099.woff",
+    "static/media/ElegantIcons.eot": "/movie-react/static/media/ElegantIcons.78ba4ad1289e5a66ca11.eot",
+    "static/media/ElegantIcons.ttf": "/movie-react/static/media/ElegantIcons.4555dd9ce623f8fd6d72.ttf",
+    "static/media/user.png": "/movie-react/static/media/user.9b40a4d7a9d2fee2a500.png",
+    "index.html": "/movie-react/index.html",
+    "main.e7ae1686.css.map": "/movie-react/static/css/main.e7ae1686.css.map",
+    "main.e297bb51.js.map": "/movie-react/static/js/main.e297bb51.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e7ae1686.css",
+    "static/js/main.e297bb51.js"
+  ]
+}

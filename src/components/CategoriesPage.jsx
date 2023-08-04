@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 
@@ -17,16 +17,14 @@ const CategoriesPage = () => {
 
   const params = useParams();
 
-  const location = useLocation();
-
   useEffect(() => {
     setPage(0);
     getGenreByID();
-  }, [location]);
+  }, [params.categories]);
 
   useEffect(() => {
     getMovies();
-  }, [page, movies]);
+  }, [page, params.categories]);
 
   const getGenreByID = async () => {
     if (
@@ -63,6 +61,7 @@ const CategoriesPage = () => {
 
   const getMovies = async () => {
     const url = getUrl();
+    console.log(url);
     const response = await axios.get(url, header);
     setMovies(response.data.results);
     setPages(response.data.total_pages);

@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import avatar from "../style/img/user.png";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import videos from "../style/videos/1.mp4";
+import YouTube from "react-youtube";
 
 const MovieDetail = () => {
   const params = useParams();
   const [title, setTitle] = useState("");
-  const [backdrop, setBackdrop] = useState("");
   const [genre, setGenre] = useState([]);
   const [releaseDate, setReleaseDate] = useState("");
   const [rate, setRate] = useState(0);
@@ -17,19 +16,33 @@ const MovieDetail = () => {
   const [popularity, setPopularity] = useState(0);
   const [tagline, setTagline] = useState("");
   const [reviews, setReviews] = useState([]);
+  const [video, setVideo] = useState("");
+  const header = {
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+    },
+  };
+
+  const opts = {
+    height: "650",
+    width: "100%",
+  };
 
   useEffect(() => {
     getMovieDetail();
     getReview();
+    getVideo();
   }, []);
+
+  const getVideo = async () => {
+    const url = `${process.env.REACT_APP_BASE_URL}/movie/${params.id}/videos`;
+    const response = await axios.get(url, header);
+    setVideo(response.data.results[0].key);
+  };
 
   const getReview = async () => {
     const url = `${process.env.REACT_APP_BASE_URL}/movie/${params.id}/reviews`;
-    const header = {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-      },
-    };
+
     const response = await axios.get(url, header);
     setReviews(response.data.results);
   };
@@ -41,14 +54,8 @@ const MovieDetail = () => {
 
   const getMovieDetail = async () => {
     const url = `${process.env.REACT_APP_BASE_URL}/movie/${params.id}`;
-    const header = {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-      },
-    };
     const response = await axios.get(url, header);
     setTitle(response.data.title);
-    setBackdrop(response.data.backdrop_path);
     setGenre(response.data.genres);
     setReleaseDate(response.data.release_date);
     setRate(response.data.vote_average);
@@ -71,22 +78,7 @@ const MovieDetail = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="anime__video__player">
-              <video
-                id="player"
-                playsinline
-                controls
-                poster={`${process.env.REACT_APP_IMAGE_URL}${backdrop}`}
-                style={{ width: "100%" }}
-              >
-                <source src={videos} type="video/mp4" />
-                <track
-                  kind="captions"
-                  label="English captions"
-                  src="#"
-                  srclang="en"
-                  default
-                />
-              </video>
+              <YouTube videoId={video} opts={opts} />
             </div>
             <div className="anime__details__text">
               <div className="anime__details__title">
@@ -98,14 +90,15 @@ const MovieDetail = () => {
                 <ul>
                   <li>
                     <span>Studios:</span>{" "}
-                    {company.map((data) => `${data.name}, `)}
+                    {company.map((data) => data.name).join(", ")}
                   </li>
 
                   <li>
                     <span>Status:</span> {status}
                   </li>
                   <li>
-                    <span>Genre:</span> {genre.map((data) => `${data.name}, `)}
+                    <span>Genre:</span>{" "}
+                    {genre.map((data) => data.name).join(", ")}
                   </li>
 
                   <li>
